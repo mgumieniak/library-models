@@ -1,0 +1,43 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    jcenter()
+}
+
+ext {
+    bootVersion = '2.2.2.RELEASE'
+    lombokVersion = '1.18.10'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security:' + bootVersion
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:' + lombokVersion
+    annotationProcessor 'org.projectlombok:lombok:' + lombokVersion
+}
+
+test {
+    // Use junit platform for unit tests
+    useJUnitPlatform()
+}
+
+group = 'com.database.models'
+version = '1.0'
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}

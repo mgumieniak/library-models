@@ -1,22 +1,23 @@
-package com.database;
+package com.database.models;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class UserPrincipalDto implements UserDetails {
-    private String username;
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
-    private boolean active;
-    private boolean accountExpire;
-    private boolean locked;
-    private boolean credentialsExpire;
+    private final String username;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean active;
+    private final boolean accountExpire;
+    private final boolean locked;
+    private final boolean credentialsExpire;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
